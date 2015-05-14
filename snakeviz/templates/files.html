@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" .>
     <title>{{dirname}}</title>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,10 +16,21 @@
   <body>
     <h1 id="snakeviz-text">SnakeViz</h1>
 	<br/>
-	{% for name in files %}
-	<div>
-	<a href=/snakeviz/{{dirname}}%2F{{name}}> {{name}} </a>
-	</div>
-	{% end %}
+	<table>
+	  <thead>
+        <tr>
+          <th data-column="name"><a href="#">Name</a></th>
+          <th data-column="size"><a href="#">Size</a></th>
+          <th id="timelink" data-column="totalTime"><a href="#">Time Taken</a></th>
+        </tr>
+      </thead>
+	  <tbody>
+		</tbody>
+	</table>
+	<script type="text/javascript">
+	  {% autoescape None %}
+	  var jsonfiles = '{{ json_encode(files) }}';
+	</script>
+	<script src="/static/sort.js"></script>
   </body>
 </html>
